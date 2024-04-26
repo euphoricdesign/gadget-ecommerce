@@ -18,17 +18,17 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Experience power and elegance with the iPhone 11: capture stunning moments with its dual-camera system, enjoy exceptional performance, and immerse yourself in a brilliant Liquid Retina display. Discover a world of possibilities in the palm of your hand!",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_809326-MLA46115014340_052021-O.webp",
+      "https://i5.walmartimages.com/seo/Pre-Owned-iPhone-11-64GB-Red-Unlocked-Refurbished-Good_78de080f-0fec-4f22-8451-305c7a073980.f35dad7cf5a6fa45eeaefdb93084e440.jpeg",
     categoryId: 1,
     stock: 10,
   },
   {
-    name: "MacBook Air",
+    name: "Apple Vision Pro",
     price: 999,
     description:
-      "Embrace efficiency and sophistication with the MacBook Air: lightweight design meets powerful performance, stunning Retina display brings your work to life, and all-day battery life keeps you productive wherever you go. Elevate your computing experience with the MacBook Air.",
+      "With Apple Vision Pro, you have an infinite canvas that transforms how you use the apps you love. Arrange apps anywhere and scale them to the perfect size, making the workspace of your dreams a reality — all while staying present in the world around you.",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_868385-MLA52463970075_112022-O.webp",
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTA8yg-HAqKDg_rswkmU_i_xTkYI9HJdvtJiPyIhsBglndtAA1G17VzddIVjhYQusGOL-XWoxJ-PhG-63fHOGbZmLDyqjLI",
     categoryId: 2,
     stock: 10,
   },
@@ -38,7 +38,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Unleash your creativity and productivity with the iPad Pro: powerful performance, stunning Liquid Retina display, and all-day battery life make the iPad Pro the perfect tool for work and play. Transform your ideas into reality with the iPad Pro.",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_814559-MLA53970921150_022023-O.webp",
+      "https://ofertones.com.ar/cdn/shop/products/D_NQ_NP_803992-MLA52988770428_122022-F.jpg?v=1705949937&width=750",
     categoryId: 3,
     stock: 10,
   },
@@ -48,7 +48,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Stay connected and healthy with the Apple Watch Series 6: track your workouts, monitor your health, and stay in touch with the people and information you care about most. Experience the future of health and wellness with the Apple Watch Series 6.",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_733580-MLA72063241888_102023-O.webp",
+      "https://d3d71ba2asa5oz.cloudfront.net/12003181/images/app%20watch%206%20gold.jpg",
     categoryId: 4,
     stock: 10,
   },

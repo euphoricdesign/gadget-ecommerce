@@ -2,16 +2,25 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import ProductCard from "../ProductCard/ProductCard"
 import axios from "axios";
+import IProduct from "../../interfaces/IProduct";
 
 
-const Container = styled.div`
+interface ContainerProps {
+  children: React.ReactNode;
+}
+
+const Container = styled.div<ContainerProps>`
   max-width: 1200px; /* Ajusta este valor según el ancho máximo deseado */
   margin: 0 auto; /* Centra el contenedor horizontalmente */
   padding: 0 20px; /* Añade un pequeño padding para separar el contenido de los bordes */
 `;
 
 
-const CardContainer = styled.div`
+interface CardContainerProps {
+  children: React.ReactNode;
+}
+
+const CardContainer = styled.div<CardContainerProps>`
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
   gap: 16px;
@@ -26,13 +35,13 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardList = () => {
+const CardList: React.FC = () => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<IProduct[]>([])
 
     useEffect(() => {
       const fetchProducts = async () => {
-        const products = await axios.get("http://localhost:3001/products")
+        const products = await axios.get<IProduct[]>("http://localhost:3001/products")
         console.log(products.data)
         setProducts(products.data)
       }
@@ -45,7 +54,7 @@ const CardList = () => {
     return (
         <Container>
           <CardContainer>
-           {Array.isArray(products) && products.length > 0 ? (
+           {products.length > 0 ? (
               products.map((product: any) => (
                 <ProductCard key={product.id}>
                   <img src={product.image} alt={product.name} />

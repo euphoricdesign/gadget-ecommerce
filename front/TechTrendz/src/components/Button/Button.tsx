@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-const StyledButton = styled.button`
+interface IButtonProps {
+  name: string;
+}
+
+interface StyledButtonProps {
+  children: React.ReactNode;
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
   margin-top: 0; 
   margin-bottom: 20px; 
   font-size: .9rem; 
@@ -27,10 +35,10 @@ const StyledButton = styled.button`
 `
 
 
-const Button = (props) => {
+const Button: React.FC<IButtonProps> = ({name}) => {
   return (
     <StyledButton>
-      {props.name}
+      {name}
     </StyledButton>
   )
 }

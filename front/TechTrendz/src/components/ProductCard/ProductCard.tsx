@@ -1,7 +1,11 @@
 import styled from "styled-components"
 
-const ProductCard = styled.div`
-  background-color: #f5f5f5;
+interface ProductCardProps {
+  children: React.ReactNode;
+}
+
+const ProductCard = styled.div<ProductCardProps>`
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

@@ -23,14 +23,16 @@ const StyledButton = styled.button<StyledButtonProps>`
   background: #cd8fd8;
   cursor: pointer;
   transiton: opacity 300ms ease;
+  display: none;
 
   &:hover {
     opacity: 0.8;
   }
 
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     margin-bottom: 0;
+    display: block;
   }
 `
 

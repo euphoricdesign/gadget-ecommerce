@@ -28,7 +28,11 @@
     color: #5b5b5b;
     text-decoration: none;
     font-weight: 700;
-    margin: 1rem 1rem 1rem 2.5rem;
+    margin: 1rem 1rem 1rem 7rem;
+}
+
+.navbar {
+    transform-style: preserve-3d;
 }
 
 .navbar a {
@@ -37,11 +41,14 @@
     text-decoration: none;
     font-weight: 500;
     margin-left: 2.5rem;
+    transition: transform 0.3s;
 }
 
-.navbar a:last-child {
-    margin-right: 2.5rem;
+.navbar a:hover {
+    color: #333;
+    transform: translateY(-1px) scale3d(1.03, 1.03, 1.03);
 }
+
 
 #check {
     display: none;
@@ -56,8 +63,15 @@
     display: none;
 }
 
-.bars, .x {
+.icon {
     color: #5b5b5b;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.close {
+    font-weight: 600;
+    font-size: 18px;
 }
 
 @media (max-width: 992px) {

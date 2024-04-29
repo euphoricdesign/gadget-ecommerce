@@ -18,7 +18,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Experience power and elegance with the iPhone 11: capture stunning moments with its dual-camera system, enjoy exceptional performance, and immerse yourself in a brilliant Liquid Retina display. Discover a world of possibilities in the palm of your hand!",
     image:
-      "https://i5.walmartimages.com/seo/Pre-Owned-iPhone-11-64GB-Red-Unlocked-Refurbished-Good_78de080f-0fec-4f22-8451-305c7a073980.f35dad7cf5a6fa45eeaefdb93084e440.jpeg",
+      "https://http2.mlstatic.com/D_NQ_NP_2X_656548-MLA46114829749_052021-F.webp",
     categoryId: 1,
     stock: 10,
   },

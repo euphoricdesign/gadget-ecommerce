@@ -1,3 +1,4 @@
+import Button from '../Button/Button'
 import './Navbar.css'
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -7,12 +8,12 @@ interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 const Navbar: React.FC = () => {
   return (
     <header className="header">
-        <a href="#" className="logo">Logo</a>
+        <a style={{marginLeft:"7.5rem"}} href="#" className="logo">Logo</a>
 
         <input type="checkbox" id='check' />
         <label htmlFor="check" className='icons'>
-            <i className='bx bx-menu-alt-right bars' id='menu-icon'></i>
-            <i className='bx bx-x x' id='close-icon'></i>
+          <i id="menu-icon" className="icon">&#9776;</i>
+          <i id="close-icon" className="icon close">&#10005;</i>
         </label> 
         <nav className="navbar">
           <a href="#" style={{ '--i': 0 }} {...({} as AnchorProps)}>Categories</a>
@@ -20,6 +21,8 @@ const Navbar: React.FC = () => {
           <a href="#" style={{ '--i': 2 }} {...({} as AnchorProps)}>Iphone</a>
           <a href="#" style={{ '--i': 3 }} {...({} as AnchorProps)}>Airpods</a>
         </nav>
+
+        <Button name={"Login"} />
     </header>
   )
 }

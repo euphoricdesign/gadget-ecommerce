@@ -1,0 +1,44 @@
+.img1 {
+    width: 300px;
+    position: absolute;
+    top: -30%;
+    left: 55%;
+}
+
+.img2 {
+    width: 316px;
+    position: absolute;
+    top: 23%;
+    left: 46%;
+}
+
+
+@media (max-width: 768px) {
+    .cardContent {
+        width: 100%;
+    }
+
+    .gapSm {
+        gap: 1rem;
+    }
+
+    .h1 {
+        font-size: 1.5rem;
+        margin: 1.25rem 0;
+        width: 16rem;
+    }
+
+    .button {
+        width: 130px;
+    }
+
+    .img1 {
+        width: 250px;
+        top: 3%;
+        left: 55%;
+    }
+
+    .img2 {
+        width: 300px;
+    }
+}

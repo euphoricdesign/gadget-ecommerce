@@ -17,18 +17,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: hsla(0,0%,100%,.8);
-    background: hsla(0,0%,100%,.88);
-    backdrop-filter: blur(12px);
+    background-color: white;
     z-index: -1;
 }
 
 .logo {
     font-size: 1.8rem;
-    color: #5b5b5b;
+    color: rgb(82 82 91);
     text-decoration: none;
     font-weight: 700;
-    margin: 1rem 1rem 1rem 7rem;
+    margin: 1rem 0;
 }
 
 .navbar {
@@ -36,8 +34,9 @@
 }
 
 .navbar a {
-    font-size: 1rem;
-    color: #5b5b5b;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    color: rgb(82 82 91);
     text-decoration: none;
     font-weight: 500;
     margin-left: 2.5rem;
@@ -45,12 +44,12 @@
 }
 
 .navbar a:hover {
-    color: #333;
+    color: #000;
     transform: translateY(-1px) scale3d(1.03, 1.03, 1.03);
 }
 
 
-#check {
+.check {
     display: none;
 }
 
@@ -64,9 +63,17 @@
 }
 
 .icon {
-    color: #5b5b5b;
+    color: rgb(82 82 91);
     font-size: 20px;
     font-style: normal;
+}
+
+.left {
+    margin-left: 7.5rem;
+}
+
+.right {
+    margin-right: 7.5rem;
 }
 
 .close {
@@ -81,37 +88,61 @@
 }
 
 @media (max-width: 768px) {
+    .header {
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .menuIcons {
+        width: 64px;
+        margin-left: 0;
+    }
     .icons {
         display: inline-flex;
+        width: 100%;
+        justify-content: center;
+        position: relative;
     }
 
-    #check:checked~.icons #menu-icon {
+    .icon {
+        font-size: 18px;
+    }
+
+    .right {
+        order: 1;
+        margin-right: 0;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+        margin-left: 0;
+    }
+
+    .check:checked~.icons .menuIcon {
         display: none;
     }
 
-    .icons #close-icon {
+    .icons .closeIcon {
         display: none;
     }
 
-    #check:checked~.icons #close-icon {
+    .check:checked~.icons .closeIcon {
         display: block;
     }
 
     .navbar {
         position: absolute;
-        top: 100%;
+        top: 99%;
         left: 0;
         width: 100%;
         height: 0;
-        background-color: hsla(0,0%,100%,.8);
-        background: hsla(0,0%,100%,.88);
-        backdrop-filter: blur(12px);
+        background-color: white;
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
         overflow: hidden;
         transition: .3s ease;
     }
     
-    #check:checked~.navbar {
+    .check:checked~.navbar {
         height: 17.7rem;
     }
 
@@ -125,7 +156,7 @@
         transition: .3s ease;
     }
 
-    #check:checked~.navbar a {
+    .check:checked~.navbar a {
         transform: translateY(0);
         opacity: 1;
         transition: calc(.15s * var(--i));

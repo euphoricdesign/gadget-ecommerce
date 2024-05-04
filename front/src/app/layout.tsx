@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { poppins } from "./fonts";
 import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +18,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full relative">
       <body className={`${poppins.className} antialiased`}>
         <Navbar />
-        <div className="max-w-7xl mx-auto px-3">
+        <div className="max-w-7xl mx-auto px-7 mt-28">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Experience power and elegance with the iPhone 11: capture stunning moments with its dual-camera system, enjoy exceptional performance, and immerse yourself in a brilliant Liquid Retina display. Discover a world of possibilities in the palm of your hand!",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_2X_656548-MLA46114829749_052021-F.webp",
+      "https://d28hi93gr697ol.cloudfront.net/9ef84dda-32dd-4016-7da3-1c0a824fffb4/img/Producto/2ad30421-8829-a476-1028-e20102cb5fe0/iphone-11-black-65972af1513f2.webp",
     categoryId: 1,
     stock: 10,
   },
@@ -48,7 +48,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Stay connected and healthy with the Apple Watch Series 6: track your workouts, monitor your health, and stay in touch with the people and information you care about most. Experience the future of health and wellness with the Apple Watch Series 6.",
     image:
-      "https://d3d71ba2asa5oz.cloudfront.net/12003181/images/app%20watch%206%20gold.jpg",
+      "https://mac-center.com.pe/cdn/shop/products/IMG-5782599_4808a4eb-6132-4b8a-bc59-48aadc807161_823x.jpg?v=1660915002",
     categoryId: 4,
     stock: 10,
   },
@@ -58,7 +58,7 @@ const productsToPreLoad: IProduct[] = [
     description:
       "Immerse yourself in sound with the AirPods Pro: active noise cancellation, transparency mode, and customizable fit make the AirPods Pro the perfect companion for music, calls, and everything in between. Elevate your audio experience with the AirPods Pro.",
     image:
-      "https://http2.mlstatic.com/D_NQ_NP_606698-MLU74678792835_022024-O.webp",
+      "https://plazavea.vteximg.com.br/arquivos/ids/28719943-650-650/20394403.jpg",
     categoryId: 5,
     stock: 10,
   },

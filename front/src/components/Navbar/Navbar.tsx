@@ -2,6 +2,7 @@
 import { CiUser, CiShoppingCart  } from "react-icons/ci";
 import styles from './Navbar.module.css'
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   style?: React.CSSProperties & { '--i'?: number };
@@ -14,7 +15,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setSizeLoader(window.innerWidth < 768); // Ajusta el valor de 768 según tus necesidades
+      setSizeLoader(window.innerWidth < 769); // Ajusta el valor de 768 según tus necesidades
     };
 
     handleResize(); // Inicializa el valor de sizeLoader
@@ -59,16 +60,15 @@ const Navbar: React.FC = () => {
         
         </header>
       ) : (
-        <header className={styles.header}>
-        
-        <a href="#" className={`${styles.logo} ${styles.left}`}>Logo</a>
+      <header className={`${styles.header} px-7`}>
+        <Link href="/" className={`${styles.logo} ${styles.left}`}>Logo</Link>
 
         <input id="check" type="checkbox" className={styles.check} />
         <label htmlFor="check" className={styles.icons}>
           <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776;</i>
           <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005;</i>
         </label> 
-        
+
         <nav className={styles.navbar}>
           <a href="#" style={{ '--i': 0 }} {...({} as AnchorProps)}>Categories</a>
           <a href="#" style={{ '--i': 1 }} {...({} as AnchorProps)}>Notebooks</a>
@@ -80,7 +80,7 @@ const Navbar: React.FC = () => {
           <CiShoppingCart className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
           <CiUser className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
         </div>
-    </header>
+      </header>
 
       )
     }

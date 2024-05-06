@@ -38,6 +38,7 @@ export const loginUserService = async (
     relations: ["credential", "orders"],
   });
   if (!user) throw new Error("User not found");
+  console.log(user)
   if (
     await checkPasswordService(loginUserDto.password, user.credential.password)
   ) {

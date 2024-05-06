@@ -8,16 +8,18 @@ const Register = () => {
   const router = useRouter()
 
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    username: "",
     password: "",
+    name: "",
+    address: "",
+    phone: ""
 })
   const [errors, setErrors] = useState({
-    name: "",
     email: "",
-    username: "",
     password: "",
+    name: "",
+    address: "",
+    phone: ""
   })
 
   const [success, setSuccess] = useState(false)
@@ -60,14 +62,31 @@ const Register = () => {
 
       if (isFormValid) {
         //* HAPPY PATH
-        alert("Te registraste correctamente")
+
+        const opciones = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json' // Tipo de contenido que estamos enviando
+          },
+          body: JSON.stringify(formData) // Convertimos los datos a formato JSON
+        }
+
+        const response = await fetch("http://localhost:3001/users/register", opciones)
+
+        if (!response.ok) {
+          throw new Error('Error en la petición'); // Si la respuesta no es exitosa, lanzamos un error
+        }
+
+        const data = await response.json();
+        console.log(data)
+
         router.push("/login")
       } else {
         alert('Todos los campos son obligatorios')
       }
 
     } catch (err) {
-      console.log('Ocurrió un error al registrarte')
+      console.log(err)
     }
     
   }
@@ -84,13 +103,18 @@ const Register = () => {
         <input className={errors.email ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="email" value={formData.email} name='email' onChange={handleInputChange} />
         {errors.email && <p className="text-red-600 text-sm mb-4">{errors.email}</p>}
 
-        <label className='block my-2.5 font-bold'>Username</label>
-        <input className={errors.username ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="text" value={formData.username} name='username' onChange={handleInputChange} />
-        {errors.username && <p className="text-red-600 text-sm mb-4">{errors.username}</p>}
-
         <label className='block my-2.5 font-bold'>Password</label>
         <input className={errors.password ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="password" value={formData.password} name='password' onChange={handleInputChange} />
         {errors.password && <p className="text-red-600 text-sm mb-4">{errors.password}</p>}
+
+        <label className='block my-2.5 font-bold'>Address</label>
+        <input className={errors.address ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="text" value={formData.address} name='address' onChange={handleInputChange} />
+        {errors.address && <p className="text-red-600 text-sm mb-4">{errors.address}</p>}
+
+        <label className='block my-2.5 font-bold'>Phone</label>
+        <input className={errors.phone ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="text" value={formData.phone} name='phone' onChange={handleInputChange} />
+        {errors.phone && <p className="text-red-600 text-sm mb-4">{errors.phone}</p>}
+
 
         <button className='bg-sky-600 text-white py-2.5 px-5 mt-4 border-none rounded cursor-pointer text-base w-full hover:bg-sky-800'>Enviar</button>
       </form>

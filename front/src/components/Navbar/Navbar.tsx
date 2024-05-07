@@ -38,24 +38,24 @@ const Navbar: React.FC = () => {
 
   const handleCartNotification = () => {
     if (!token) {
-      // Verificar si la notificación ya ha sido mostrada
-      if (!localStorage.getItem('notificacionMostrada')) {
-        // Crear una instancia de notificación
-        const myToast =   Toastify({
-          text: 'Inicia sesión para agregar productos',
-          className: 'toastify',
-          position: 'left',
-          gravity: 'bottom',
-          duration: 999999999, // Duración muy grande para simular permanencia en pantalla
-          close: true
-        })
+      // Crear una instancia de notificación
+      const myToast =   Toastify({
+        text: 'Inicia sesión para agregar productos',
+        className: 'toastify',
+        position: 'left',
+        gravity: 'bottom',
+        duration: 999999999, // Duración muy grande para simular permanencia en pantalla
+        close: true
+      })
 
-        // Mostrar la notificación
-        myToast.showToast();
-      }
-    } 
+      // Mostrar la notificación
+      myToast.showToast();
+  
+    } else {
+      router.push("/cart")
+    }
+    
 
-    router.push("/cart")
 
   }
   

@@ -32,7 +32,8 @@ const config: Config = {
         '75': '4.6875rem'
       },
       width: {
-        '30percent': '30%'
+        '30percent': '30%',
+        '45percent': '45%'
       },
       spacing: {
         '-55': '-55px'

@@ -11,7 +11,7 @@ interface CardHomeProps {
     pLeft: string;
 }
 
-const CardHome: React.FC<CardHomeProps> = ({ span, heading, width, pTop, pLeft}) => {
+const CardHome: React.FC<CardHomeProps> = ({ span, heading, pTop}) => {
   return (
     <div className={`${styles.cardContent} ${pTop === '-30%' ? 'w-3/4 bg-[#ECECEC]' : 'w-2/4 bg-[#1E1E1E]'} mobile:hidden desktop:flex relative overflow-hidden h-80 p-16 rounded flex items-center`}>
         <div className='flex flex-col md:gap-6'>

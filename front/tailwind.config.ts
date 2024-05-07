@@ -30,6 +30,15 @@ const config: Config = {
       },
       height: {
         '75': '4.6875rem'
+      },
+      width: {
+        '30percent': '30%'
+      },
+      spacing: {
+        '-55': '-55px'
+      },
+      margin: {
+        '15percent': '15%'
       }
     },
   },

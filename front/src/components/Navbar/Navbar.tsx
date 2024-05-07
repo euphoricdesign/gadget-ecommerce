@@ -1,35 +1,108 @@
 'use client'
-import { CiUser, CiShoppingCart  } from "react-icons/ci";
+import { CiUser, CiShoppingCart  } from "react-icons/ci" 
+import { useEffect, useRef, useState } from "react" 
+import { useRouter } from 'next/navigation'
+import Link from "next/link" 
+import Toastify from 'toastify-js'  
 import styles from './Navbar.module.css'
-import { useEffect, useState } from "react";
-import Link from "next/link";
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  style?: React.CSSProperties & { '--i'?: number };
+  style?: React.CSSProperties & { '--i'?: number } 
 }
-
 
 const Navbar: React.FC = () => {
 
-  const [sizeLoader, setSizeLoader] = useState(false);
+  const [sizeLoader, setSizeLoader] = useState<boolean>(false) 
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [token, setToken] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem("userSession") || null  
+    }
+    return null  
+  })  
+
+  const modalRef = useRef<HTMLDivElement | null>(null)
+  const currentClickRef = useRef<EventTarget | null>(null) 
+
+  const router = useRouter()
+
+
+  const handleShowModal = (event: React.MouseEvent<SVGElement>) => {
+    currentClickRef.current = event.target 
+    setShowModal((prevShowModal) => !prevShowModal) 
+  } 
+
+  const handleCloseModal = () => {
+    setShowModal(false) 
+  }
+
+  const handleCartNotification = () => {
+    if (!token) {
+      // Verificar si la notificación ya ha sido mostrada
+      if (!localStorage.getItem('notificacionMostrada')) {
+        // Crear una instancia de notificación
+        const myToast =   Toastify({
+          text: 'Inicia sesión para agregar productos',
+          className: 'toastify',
+          position: 'left',
+          gravity: 'bottom',
+          duration: 999999999, // Duración muy grande para simular permanencia en pantalla
+          close: true
+        })
+
+        // Mostrar la notificación
+        myToast.showToast();
+      }
+    } 
+
+    router.push("/cart")
+
+  }
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const storedToken = localStorage.getItem('userSession')  
+      if (storedToken !== token) {
+        setToken(storedToken || null)  
+      }
+    }, 1000)   // Verifica cada 1 segundo
+
+    return () => clearInterval(interval)  
+  }, [token])  
+
 
   useEffect(() => {
     const handleResize = () => {
-      setSizeLoader(window.innerWidth < 769); // Ajusta el valor de 768 según tus necesidades
-    };
+      setSizeLoader(window.innerWidth < 769)  
+    } 
 
-    handleResize(); // Inicializa el valor de sizeLoader
+    handleResize()  // Inicializa el valor de sizeLoader
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize) 
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize) 
+    } 
+  }, []) 
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current?.contains(event.target as Node) && // Operador de aserción de tipo as Node para asegurarnos de que event.target sea un nodo del DOM. Es necesario porque event.target puede ser null 
+        event.target !== currentClickRef.current
+      ) {
+        handleCloseModal()  
+      }
+    }
 
+    document.addEventListener('mousedown', handleClickOutside) 
 
-  
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside) 
+    } 
+  }, []) 
+
   return (<>
 
     {
@@ -37,8 +110,8 @@ const Navbar: React.FC = () => {
         <header className={styles.header}>
           <div className={styles.menuIcons}>
             <label htmlFor="check" className={styles.icons}>
-              <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776;</i>
-              <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005;</i>
+              <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776 </i>
+              <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005 </i>
             </label> 
           </div>
           <input id="check" type="checkbox" className={styles.check} />
@@ -47,7 +120,7 @@ const Navbar: React.FC = () => {
             <CiShoppingCart className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
             <CiUser className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
           </div>
-          <a href="#" className={`${styles.logo} ${styles.left}`}>Logo</a>
+          <Link href="/" className={`${styles.logo} ${styles.left}`}>Logo</Link>
           
           
           <nav className={styles.navbar}>
@@ -65,8 +138,8 @@ const Navbar: React.FC = () => {
 
         <input id="check" type="checkbox" className={styles.check} />
         <label htmlFor="check" className={styles.icons}>
-          <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776;</i>
-          <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005;</i>
+          <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776 </i>
+          <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005 </i>
         </label> 
 
         <nav className={styles.navbar}>
@@ -76,9 +149,20 @@ const Navbar: React.FC = () => {
           <a href="#" style={{ '--i': 3 }} {...({} as AnchorProps)}>Airpods</a>
         </nav>
 
-        <div className={`${styles.right} flex gap-4`}>
-          <CiShoppingCart className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
-          <CiUser className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+        <div className={`${styles.right} flex gap-4 relative`}>
+          <CiShoppingCart onClick={handleCartNotification} className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+          <CiUser onClick={handleShowModal} className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+
+          {showModal && (
+            <div className="absolute top-10 w-48 bg-white flex gap-4 justify-center -left-55 p-4 h-32 rounded shadow-md" ref={modalRef}>
+              <div>
+                <ul className="flex flex-col gap-3">
+                  <li onClick={handleCloseModal}><Link href={token ? "/dashboard" : "/login"}>{token ? "Mi cuenta" : "Inicia sesión"}</Link></li>
+                  <li onClick={handleCloseModal}><Link href="">Guardados</Link></li>
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
       </header>
 

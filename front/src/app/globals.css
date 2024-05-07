@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
 input:focus {
     outline: none;
 }
+
+.toastify {
+    position: fixed;
+    bottom: 0;
+    left: 0; /* Opcional, si quieres que esté a la izquierda */
+    padding: 15px;
+    color: white;
+    background: #1e1e1e;
+    margin: 0 30px 30px 20px; 
+    width: 25rem; 
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    animation: slideInFromLeft 0.5s ease;
+  }
+  
+

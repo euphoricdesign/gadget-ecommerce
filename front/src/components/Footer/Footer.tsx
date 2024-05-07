@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const pathname = usePathname()
 
   return (

@@ -3,9 +3,18 @@ import { CiStar } from "react-icons/ci";
 import { AiFillStar } from "react-icons/ai";
 import { CiShoppingCart  } from "react-icons/ci";
 import styles from '../../components/CardHome/CardHome.module.css'
-import './detail.css'
+import './detail.css' //* CAMBIAR ESTO A CLASES TAILWIND O MODULE CSS EN SU DEFECTO.
 
-const ProductDetail = ({product}) => {
+interface ProductProps {
+    product: {
+      image: string;
+      name: string;
+      price: number;
+      description: string;
+    };
+  }
+
+const ProductDetail: React.FC<ProductProps> = ({product}) => {
 
     return (
         <div className='container'>

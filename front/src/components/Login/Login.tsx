@@ -28,6 +28,8 @@ const Login: React.FC = () => {
     password: "",
   })
   const [success, setSuccess] = useState<boolean>(false)
+  const [failed, setFailed] = useState<boolean>(false)
+
 
   const [token, setToken] = useState(localStorage.getItem("userSession") || null)
 
@@ -84,6 +86,7 @@ const Login: React.FC = () => {
         const response = await fetch("http://localhost:3001/users/login", opciones)
 
         if (!response.ok) {
+          setFailed(true)
           throw new Error('Error en la petición'); // Si la respuesta no es exitosa, lanzamos un error
         }
 
@@ -126,7 +129,7 @@ const Login: React.FC = () => {
         {errors.password && <p className="text-red-600 text-sm mb-4">{errors.password}</p>}
 
         <button className={`${styles.button} flex justify-center items-center gap-4 shadow-md w-full border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-8 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}>Enviar</button>
-        {success && (
+        {success ? (
             <div className="mt-4 py-3 px-4 bg-[#e8f5e9] border border-[#c8e6c9] rounded text-sm text-[#2e7d32] flex items-center">
               <svg className="mr-2 text-[#4caf50]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                 <path d="M0 0h24v24H0z" fill="none" />
@@ -134,6 +137,16 @@ const Login: React.FC = () => {
               </svg>
               You successfully logged in!
             </div>
+          ) : failed ? (
+            <div className="mt-4 py-3 px-4 bg-red-200 border border-[#e6c8c8] rounded text-sm text-red-600 flex items-center">
+              <svg className="mr-2 text-[#af4c4c]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+              Error logging in. User does not exist.
+            </div>
+          ) : (
+            <></>
           )}
       </form>
       <div className="text-center mt-5 mb-10">

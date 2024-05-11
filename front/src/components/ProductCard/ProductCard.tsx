@@ -1,20 +1,79 @@
+'use client'
+import { useState } from "react" 
+import { getProductById } from "@/helpers/getData" 
+import IProduct from "@/types/IProduct" 
+import Link from "next/link" 
+import { usePathname, useRouter } from "next/navigation" 
+import { CiShoppingCart  } from "react-icons/ci" 
+import Toastify from 'toastify-js'
+
+
 interface ProductCardProps {
-    image:string;
-    name:string;
-    price:number;
+  id: string 
+  image:string 
+  name:string 
+  price:number 
 }
   
 const ProductCard: React.FC<ProductCardProps> = ({
+    id,
     image,
     name,
     price,
   }) => {
+
+    const pathname = usePathname()
+
+
+    const storedUserSession = localStorage.getItem("userSession") 
+    const [userSession, setUserSession] = useState(storedUserSession ? JSON.parse(storedUserSession) : null) 
+  
+    const [product, setProduct] = useState<IProduct>()
+  
+    const router = useRouter()
+  
+    const handleAddToCart = async(event: any) => {
+      event.stopPropagation()
+      
+      if (!userSession) {
+        // Crear una instancia de notificación
+        const myToast =   Toastify({
+          text: 'Inicia sesión para agregar productos',
+          className: 'toastify',
+          position: 'left',
+          gravity: 'bottom',
+          duration: 999999999, // Duración muy grande para simular permanencia en pantalla
+          close: true
+        })
+  
+        // Mostrar la notificación
+        myToast.showToast() 
+      } else {
+        const product = await getProductById(id)
+        setProduct(product)
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]")
+        if (!cart.includes(product)) {
+          cart.push(product)
+        }
+        localStorage.setItem("cart", JSON.stringify(cart))
+        router.push("/cart")
+      }
+    }
+
+
     return (
-      <div className="bg-white shadow-md rounded-md overflow-hidden p-3">
-        <img src={image} alt={name} className="w-full h-48 object-contain" />
-        <div className="p-4">
+      <div className="bg-white shadow-md rounded-md overflow-hidden p-3 h-22rem">
+        <Link href={`/product/${id}`}><img src={image} alt={name} className="w-full h-48 object-contain" /></Link>
+        
+        <div className="p-4 flex flex-col gap-4">
           <h3 className="text-lg font-semibold mb-2">{name}</h3>
-          <p className="text-gray-700">Precio: ${price}</p>
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-gray-400 text-sm">Precio:</p>
+              <p className="font-semibold">${price}</p>
+            </div>
+            <span onClick={handleAddToCart} className={`${pathname === '/purchases' ? 'hidden' : ''} bg-[#1e1e1e] w-9 h-9 rounded text-white flex items-center justify-center text-center cursor-pointer`}><CiShoppingCart /></span>
+          </div>
         </div>
       </div>
     )

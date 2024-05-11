@@ -1,5 +1,5 @@
 'use client'
-import { CiUser, CiShoppingCart  } from "react-icons/ci" 
+import { CiUser, CiShoppingCart } from "react-icons/ci" 
 import { useEffect, useRef, useState } from "react" 
 import { useRouter } from 'next/navigation'
 import Link from "next/link" 
@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 
   const [sizeLoader, setSizeLoader] = useState<boolean>(false) 
   const [showModal, setShowModal] = useState<boolean>(false)
-  const [token, setToken] = useState(() => {
+  const [userSession, setUserSession] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem("userSession") || null  
     }
@@ -37,10 +37,10 @@ const Navbar: React.FC = () => {
   }
 
   const handleCartNotification = () => {
-    if (!token) {
+    if (!userSession) {
       // Crear una instancia de notificación
       const myToast =   Toastify({
-        text: 'Inicia sesión para agregar productos',
+        text: 'Inicia sesión para ver cesta de compras',
         className: 'toastify',
         position: 'left',
         gravity: 'bottom',
@@ -54,21 +54,28 @@ const Navbar: React.FC = () => {
     } else {
       router.push("/cart")
     }
-    
-
-
   }
-  
+
+  const removeUserFromLocalStorage = () => {
+    try {
+      localStorage.removeItem('userSession')
+      localStorage.removeItem('cart')
+      setUserSession(null)
+    } catch (err) {
+      console.error('Error al eliminar el usuario del localStorage:', err);
+    }
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const storedToken = localStorage.getItem('userSession')  
-      if (storedToken !== token) {
-        setToken(storedToken || null)  
+      const storedSession = localStorage.getItem('userSession')  
+      if (storedSession !== userSession) {
+        setUserSession(storedSession || null)  
       }
     }, 1000)   // Verifica cada 1 segundo
 
     return () => clearInterval(interval)  
-  }, [token])  
+  }, [userSession])  
 
 
   useEffect(() => {
@@ -120,7 +127,7 @@ const Navbar: React.FC = () => {
             <CiShoppingCart className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
             <CiUser className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
           </div>
-          <Link href="/" className={`${styles.logo} ${styles.left}`}>Logo</Link>
+          <Link href="/" className={`${styles.logo} ${styles.left}`}>gadget</Link>
           
           
           <nav className={styles.navbar}>
@@ -134,7 +141,7 @@ const Navbar: React.FC = () => {
         </header>
       ) : (
       <header className={`${styles.header} px-7`}>
-        <Link href="/" className={`${styles.logo} ${styles.left}`}>Logo</Link>
+        <Link href="/" className={`${styles.logo} ${styles.left}`}>gadget</Link>
 
         <input id="check" type="checkbox" className={styles.check} />
         <label htmlFor="check" className={styles.icons}>
@@ -154,11 +161,12 @@ const Navbar: React.FC = () => {
           <CiUser onClick={handleShowModal} className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
 
           {showModal && (
-            <div className="absolute top-10 w-48 bg-white flex gap-4 justify-center -left-55 p-4 h-32 rounded shadow-md" ref={modalRef}>
+            <div className="absolute top-10 w-48 bg-white flex gap-4 justify-center -left-55 p-5 h-32 rounded shadow-md" ref={modalRef}>
               <div>
                 <ul className="flex flex-col gap-3">
-                  <li onClick={handleCloseModal}><Link href={token ? "/dashboard" : "/login"}>{token ? "Mi cuenta" : "Inicia sesión"}</Link></li>
+                  <li onClick={handleCloseModal}><Link href={userSession ? "/dashboard" : "/login"}>{userSession ? "Mi cuenta" : "Inicia sesión"}</Link></li>
                   <li onClick={handleCloseModal}><Link href="">Guardados</Link></li>
+                  {userSession && <li onClick={handleCloseModal}><Link onClick={removeUserFromLocalStorage} href="#">Cerrar sesión</Link></li>}
                 </ul>
               </div>
             </div>

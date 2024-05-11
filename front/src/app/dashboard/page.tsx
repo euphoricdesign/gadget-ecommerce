@@ -1,31 +1,124 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AuthLayout from "../../components/AuthLayout/AuthLayout"
+import axios from 'axios'
+import Image from "next/image"
+import Link from "next/link"
+
+
+interface UserData {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+}
+
+interface UserSession {
+  token: string;
+  userData: UserData;
+}
+
+interface Product {
+  name: string;
+  price: number;
+  image: string;
+}
+
+interface Purchase {
+  products: Product[];
+  date: string;
+  status: string;
+}
+
+
+
 const Dashboard = () => {
   const storedUserSession = localStorage.getItem("userSession");
-  const [userSession, setUserSession] = useState(storedUserSession ? JSON.parse(storedUserSession) : null);
-  const { userData } = userSession
-  const name = userData.name.split(' ')[0]
+  const [userSession, setUserSession] = useState<UserSession | null>(storedUserSession ? JSON.parse(storedUserSession) : null);
+
+  const [userPurchaseData, setUserPurchaseData] = useState<Purchase[]>([])
+  console.log(userPurchaseData);
+  
+
+  const userData = userSession?.userData
+
+  useEffect(() => {
+    const getPurchaseData = async (token:string) => {
+      const config = {
+        headers: {
+          'Authorization':  token // Establecer el token en el encabezado de autorización
+        }
+      } 
+      const purchaseData = await axios.get("http://localhost:3001/users/orders", config)
+      const data = purchaseData.data
+      
+      setUserPurchaseData(data)
+    }
+    
+    if (userSession?.token) {
+      getPurchaseData(userSession.token);
+    }
+  },[])
   
   return (
     <AuthLayout>
       <div>
-        <h2 className="text-2xl font-bold text-[#454545] mb-10">Buenos días, <span className="text-sky-800">{name}</span></h2>
-        <div className="flex justify-between">
-          <div className="bg-[#f5f5f5] p-10 text-[#454545] flex flex-col gap-6 w-6/12 rounded-lg border-[#f5f5f5] border">
-            <h3 className="text-xl font-semibold">Datos del cliente</h3>
-            <span className="flex justify-between font-semibold">Name: <span className="font-normal">{userData.name}</span></span>
-            <span className="flex justify-between font-semibold">Address: <span className="font-normal">{userData.address}</span></span>
-            <span className="flex justify-between font-semibold">Phone: <span className="font-normal">{userData.phone}</span></span>
-            <span className="flex justify-between font-semibold">Email: <span className="font-normal">{userData.email}</span></span>
-          </div>
+        {
+          userData && (
+            <>
+              <h2 className="text-2xl font-bold text-[#454545] mb-10">Hola, <span className="text-sky-800">{userData.name.split(' ')[0]}</span></h2>
+              <div className="flex justify-between">
+                <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 w-6/12 rounded-lg border-[#ffffff] shadow-md border">
+                  <h3 className="text-xl font-semibold">Datos del cliente</h3>
+                  <span className="flex justify-between font-semibold">Name: <span className="font-normal">{userData.name}</span></span>
+                  <span className="flex justify-between font-semibold">Address: <span className="font-normal">{userData.address}</span></span>
+                  <span className="flex justify-between font-semibold">Phone: <span className="font-normal">{userData.phone}</span></span>
+                  <span className="flex justify-between font-semibold">Email: <span className="font-normal">{userData.email}</span></span>
+                </div>
 
-          <div className="bg-[#f5f5f5] p-10 text-[#454545] flex flex-col gap-6 w-45percent rounded-lg border-[#f5f5f5] border">
-            <h3 className="text-2xl font-bold text-[#454545]">Mis compras</h3>
-            <span>No ha hecho ninguna compra con esta cuenta</span>
-          </div>
-        </div>
+                <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 w-45percent rounded-lg border-[#ffffff] shadow-md border">
+                  {
+                    userPurchaseData ? (
+                      <>
+                        <div className="flex flex-col gap-6">
+                          <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
+                          {
+                            userPurchaseData.slice(0, 2).map(purchase => (
+                              <>
+                                {
+                                  purchase.products.map(product => (
+                                    <div className="text-sm flex gap-4">
+                                      <Image className="w-20" width={100} height={1} src={product.image} alt={product.name} />
+                                      <div>
+                                        <h3 className="font-semibold">{product.name}</h3>
+                                        <p>${product.price}</p>
+                                        <p>Date: {new Date(purchase.date).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '/')}</p>
+                                        <p>Status: <span className="text-green-500">{purchase.status}</span></p>
+                                      </div>
+                                    </div>
+                                  ))
+                                }
+                              </>
+                            ))
+                          }
+                          <Link href="/purchases" className="underline text-sm self-end">Ver Mis compras</Link>
+                        </div>
+                      
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
+                        <span>No ha hecho ninguna compra con esta cuenta</span>
+                        <Link href="" className="underline text-sm self-end">Ver Mis compras</Link>
+                      </>
+                    )
+                  }
+                </div>
+              </div>
+            </>
+          )
+        }
       </div>
     </AuthLayout>
   )

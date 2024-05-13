@@ -9,9 +9,9 @@ interface ICategory {
 const categoriesToPreLoad: ICategory[] = [
     { name: 'Smartphones' },
     { name: 'Laptops' },
-    { name: 'Tablets' },
+    { name: 'Ipads' },
     { name: 'Headphones' },
-    { name: 'Cameras' },
+    { name: 'AirPods' },
     { name: 'Printers' },
     { name: 'Monitors' },
     { name: 'Storage' },

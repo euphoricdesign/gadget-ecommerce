@@ -75,7 +75,7 @@ const Cart = () => {
         {
           cart && cart.length !== 0 ? (
             <>
-              <div className="flex gap-11">
+              <div className="flex gap-11 flex-wrap">
                 <div className="flex flex-col">
                   {
                     cart.map((product: IProduct) => (
@@ -97,7 +97,7 @@ const Cart = () => {
                   }
                 </div>
 
-                <div className="bg-[#f5f5f5] p-10 text-[#454545] flex flex-col gap-6 w-45percent max-h-650 rounded-lg border-[#f5f5f5] border">
+                <div className="bg-[#f5f5f5] p-10 text-[#454545] flex flex-col gap-6 desktop:w-45percent mobile:w-full max-h-650 rounded-lg border-[#f5f5f5] border">
                   <p className="flex justify-between font-medium">Subtotal <span>${cart.reduce((acc:number, current:any) => acc + current.price, 0)},00</span></p>
                   <p className="flex justify-between font-medium">Envio <span>$700,00</span></p>
                   <hr />
@@ -123,7 +123,7 @@ const Cart = () => {
               </div>
             </>
           ) : (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center" style={{height: '23rem'}}> 
               <p className="text-lg">No hay productos en tu cesta 💔</p>
               <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}><Link href="/">Comprá ahora!</Link></button>
             </div>

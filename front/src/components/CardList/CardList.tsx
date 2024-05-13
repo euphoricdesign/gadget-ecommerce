@@ -22,9 +22,9 @@ const CardList: React.FC = async () => {
       <CardContainer>
         {products.length > 0 ? (
           products.map((product) => (
-            <Link href={`/product/${product.id}`} key={product.id}>
-              <ProductCard key={product.id} image={product.image} name={product.name} price={product.price} />
-            </Link>
+            
+              <ProductCard key={product.id} id={product.id.toString()} image={product.image} name={product.name} price={product.price} />
+      
           ))
         ) : (
           <p>No hay productos disponibles</p>

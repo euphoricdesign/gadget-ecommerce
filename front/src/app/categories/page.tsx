@@ -6,7 +6,7 @@ const Categories = () => {
   return (
     <div>
         <h2 className='text-2xl font-bold text-[#454545] mb-6 mt-10'>Categories</h2>
-        <div className='flex gap-8'>
+        <div className='flex gap-8 flex-wrap desktop:justify-start mobile:justify-center'>
             <Link href="/categories/smartphones">
                 <div>
                     <div className='bg-white shadow-md rounded-md overflow-hidden p-3 w-60 h-80 flex flex-col justify-center items-center gap-4'>

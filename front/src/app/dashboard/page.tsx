@@ -68,8 +68,8 @@ const Dashboard = () => {
           userData && (
             <>
               <h2 className="text-2xl font-bold text-[#454545] mb-10">Hola, <span className="text-sky-800">{userData.name.split(' ')[0]}</span></h2>
-              <div className="flex justify-between">
-                <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 w-6/12 rounded-lg border-[#ffffff] shadow-md border">
+              <div className="flex justify-between flex-wrap mobile:gap-4">
+                <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 desktop:w-6/12 mobile:w-full rounded-lg border-[#ffffff] shadow-md border">
                   <h3 className="text-xl font-semibold">Datos del cliente</h3>
                   <span className="flex justify-between font-semibold">Name: <span className="font-normal">{userData.name}</span></span>
                   <span className="flex justify-between font-semibold">Address: <span className="font-normal">{userData.address}</span></span>
@@ -77,9 +77,9 @@ const Dashboard = () => {
                   <span className="flex justify-between font-semibold">Email: <span className="font-normal">{userData.email}</span></span>
                 </div>
 
-                <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 w-45percent rounded-lg border-[#ffffff] shadow-md border">
+                <div className={`${userPurchaseData && userPurchaseData.length < 1 && 'justify-between'} bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 desktop:w-45percent mobile:w-full rounded-lg border-[#ffffff] shadow-md border`}>
                   {
-                    userPurchaseData ? (
+                    userPurchaseData && userPurchaseData.length > 0 ? (
                       <>
                         <div className="flex flex-col gap-6">
                           <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
@@ -102,7 +102,6 @@ const Dashboard = () => {
                               </>
                             ))
                           }
-                          <Link href="/purchases" className="underline text-sm self-end">Ver Mis compras</Link>
                         </div>
                       
                       </>
@@ -110,10 +109,10 @@ const Dashboard = () => {
                       <>
                         <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
                         <span>No ha hecho ninguna compra con esta cuenta</span>
-                        <Link href="" className="underline text-sm self-end">Ver Mis compras</Link>
                       </>
                     )
                   }
+                  <Link href="/purchases" className="underline text-sm self-end">Ver Mis compras</Link>
                 </div>
               </div>
             </>

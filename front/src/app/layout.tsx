@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="h-full relative">
       <body className={`${poppins.className} antialiased`}>
         <Navbar />
-        <div className="max-w-7xl mx-auto px-7 mt-28">
+        <div className="max-w-7xl mx-auto px-7 mt-28 pb-20">
           {children}
         </div>
         <Footer />

@@ -23,7 +23,7 @@
 
 .logo {
     font-size: 1.8rem;
-    color: rgb(82 82 91);
+    color: #1e1e1e;
     text-decoration: none;
     font-weight: 700;
     margin: 1rem 0;
@@ -43,9 +43,9 @@
     transition: transform 0.3s;
 }
 
-.navbar a:first-child {
+/* .navbar a:first-child {
     margin-left: 0;
-}
+} */
 
 .navbar a:hover {
     color: #000;
@@ -138,7 +138,7 @@
     }
     
     .check:checked~.navbar {
-        height: 17.7rem;
+        height: 12.7rem;
     }
 
     .navbar a {
@@ -159,7 +159,7 @@
     }
 }
 
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
     .left {
         margin-left: 7.5rem;
     }
@@ -167,5 +167,5 @@
     .right {
         margin-right: 7.5rem;
     }
-}
+} */
 

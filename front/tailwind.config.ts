@@ -29,7 +29,8 @@ const config: Config = {
         'phone': '580px', // Dispositivos móviles grandes
       },
       height: {
-        '75': '4.6875rem'
+        '75': '4.6875rem',
+        '22rem': '22rem'
       },
       width: {
         '30percent': '30%',
@@ -40,6 +41,9 @@ const config: Config = {
       },
       margin: {
         '15percent': '15%'
+      },
+      maxHeight: {
+        '650': '40.625rem'
       }
     },
   },

@@ -42,7 +42,6 @@ const CardList: React.FC = () => {
     useEffect(() => {
       const fetchProducts = async () => {
         const products = await axios.get<IProduct[]>("http://localhost:3001/products")
-        console.log(products.data)
         setProducts(products.data)
       }
 

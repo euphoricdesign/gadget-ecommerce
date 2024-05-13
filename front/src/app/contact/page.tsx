@@ -3,9 +3,9 @@ import styles from '../../components/CardHome/CardHome.module.css'
 
 const Contact = () => {
   return (
-    <div className='my-16'>
+    <div className='mt-16'>
     <h1 className='text-center text-3xl font-bold mb-8'>Contact Us</h1>
-    <form className='w-2/5 ml-auto mr-auto p-5 bg-[#f5f5f5] rounded shadow-md'>
+    <form className='desktop:w-2/5 ml-auto mr-auto p-5 bg-[#f5f5f5] rounded shadow-md'>
       <label className='block my-2.5 font-bold'>Name</label>
       <input className='w-full p-2.5 border border-slate-300 rounded text-base mb-2.5' type="text" />
 

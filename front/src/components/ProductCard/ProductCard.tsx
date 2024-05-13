@@ -65,14 +65,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="bg-white shadow-md rounded-md overflow-hidden p-3 h-22rem">
         <Link href={`/product/${id}`}><img src={image} alt={name} className="w-full h-48 object-contain" /></Link>
         
-        <div className="p-4 flex flex-col gap-4">
-          <h3 className="text-lg font-semibold mb-2">{name}</h3>
+        <div className="p-4 flex flex-col desktop:gap-4 mobile:gap-1">
+          <h3 className="desktop:text-lg font-semibold mb-2 mobile:text-sm">{name}</h3>
           <div className="flex justify-between items-center">
             <div>
               <p className="text-gray-400 text-sm">Precio:</p>
-              <p className="font-semibold">${price}</p>
+              <p className="font-semibold desktop:text-base mobile:text-sm">${price}</p>
             </div>
-            <span onClick={handleAddToCart} className={`${pathname === '/purchases' ? 'hidden' : ''} bg-[#1e1e1e] w-9 h-9 rounded text-white flex items-center justify-center text-center cursor-pointer`}><CiShoppingCart /></span>
+            <span onClick={handleAddToCart} className={`${pathname === '/purchases' ? 'hidden' : ''} bg-[#1e1e1e] w-9 h-9 rounded text-white flex items-center justify-center text-center cursor-pointer desktop:text-base mobile:text-sm`}><CiShoppingCart /></span>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 export default function AuthLayout({ children }) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
 
   useEffect(() => {
     // Obtener la sesión del usuario desde el localStorage

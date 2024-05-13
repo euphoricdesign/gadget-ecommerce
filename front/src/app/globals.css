@@ -32,3 +32,12 @@ input:focus {
   }
   
 
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23808080" width="18px" height="18px"><path d="M24 24H0V0h24v24z" fill="none"/><path d="M7 10l5 5 5-5z"/></svg>'); /* Flecha SVG gris */
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px; /* Ajusta el espacio para la flecha */
+}

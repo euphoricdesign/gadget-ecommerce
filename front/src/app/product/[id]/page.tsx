@@ -10,7 +10,6 @@ import Toastify from 'toastify-js'
 import { useRouter } from 'next/navigation';
 import IProduct from '@/types/IProduct';
 import styles from '../../../components/CardHome/CardHome.module.css'
-import "../../../components/ProductDetail/detail.css" //* CAMBIAR ESTO A CLASES TAILWIND O MODULE CSS EN SU DEFECTO.
 
 
 
@@ -62,14 +61,14 @@ const ProductDetail = ({ params }: ProductDetailParams) => {
   }, [])
 
   return (
-    <div className='container'>
+    <div className='flex flex-row flex-wrap'>
         {
           product && (
             <>
-              <div className='img__container flex justify-center' >
+              <div className='desktop:flex-1 flex justify-center' >
               <Image className='w-96' src={product.image} width={384} height={1} layout="responsive" alt={`${product.name}`} />
               </div>
-              <div className='content__about p-10 bg-[#f5f5f5] rounded-lg border-[#f5f5f5] border'>
+              <div className='desktop:flex-1 p-10 bg-[#f5f5f5] rounded-lg border-[#f5f5f5] border'>
                 <h2 className='font-bold text-2xl text-[#454545]'>{product.name}</h2>
                 <span className='text-slate-500'>Iphones</span>
                 <div className='flex mt-4 text-yellow-500 text-lg gap-1'>

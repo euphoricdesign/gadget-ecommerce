@@ -6,19 +6,7 @@ const Footer: React.FC = () => {
   const pathname = usePathname()
 
   return (
-    <footer className={`${
-      pathname !== '/' &&
-      pathname !== '/contact' &&
-      pathname !== '/assistance' &&
-      pathname !== '/cart' &&
-      pathname !== '/register' &&
-      pathname !== '/login' &&
-      pathname !== '/purchases' &&
-
-      !pathname.startsWith('/product/') // Comprueba si la ruta comienza con '/product/'
-        ? 'desktop:absolute desktop:bottom-0 desktop:w-full'
-        : ''
-    } bg-white border-t border-slate-200 desktop:py-8 desktop:px-32 mobile:py-8 mobile:px-16 text-left`}>
+    <footer className={` bg-white border-t border-slate-200 desktop:py-8 desktop:px-32 mobile:py-8 mobile:px-16 text-left`}>
       <div className="flex flex-wrap justify-between">
         <div className="w-full md:w-1/3">
           <h3 className="text-2xl font-bold text-gray-800 mb-4 desktop:text-start mobile:text-center">

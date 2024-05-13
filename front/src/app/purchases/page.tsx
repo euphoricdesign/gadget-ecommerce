@@ -49,7 +49,7 @@ const Purchases = () => {
         <div>
             {
                 userPurchaseData.length > 0 ? (
-                    <div className='flex gap-8 my-12 flex-wrap mobile:justify-center'>
+                    <div className='flex gap-8 my-12 flex-wrap desktop:justify-start mobile:justify-center'>
                         {
                             userPurchaseData.map(purchase => (
                                 <>

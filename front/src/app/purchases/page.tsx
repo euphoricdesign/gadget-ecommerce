@@ -1,15 +1,30 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import ProductCard from '@/components/ProductCard/ProductCard';
 import styles from '../../components/CardHome/CardHome.module.css'
 import Link from 'next/link';
 
+interface Product {
+  id: string;
+  image: string;
+  name: string;
+  price: number;
+}
+
+interface Purchase {
+  products: Product[];
+}
+
+interface UserSession {
+  token: string;
+}
+
 const Purchases = () => {
   const storedUserSession = localStorage.getItem("userSession");
-  const [userSession, setUserSession] = useState(storedUserSession ? JSON.parse(storedUserSession) : null);
+  const [userSession, setUserSession] = useState<UserSession | null>(storedUserSession ? JSON.parse(storedUserSession) : null);
 
-  const [userPurchaseData, setUserPurchaseData] = useState([])
+  const [userPurchaseData, setUserPurchaseData] = useState<Purchase[]>([])
 
   useEffect(() => {
     const getPurchaseData = async (token:string) => {
@@ -18,13 +33,15 @@ const Purchases = () => {
           'Authorization':  token // Establecer el token en el encabezado de autorización
         }
       } 
-      const purchaseData = await axios.get("http://localhost:3001/users/orders", config)
+      const purchaseData: AxiosResponse<Purchase[]>  = await axios.get("http://localhost:3001/users/orders", config)
       const data = purchaseData.data
       
       setUserPurchaseData(data)
     }
 
-    getPurchaseData(userSession?.token)
+    if (userSession && userSession.token) {
+      getPurchaseData(userSession.token);
+    }
   },[])
   return (
     <div>
@@ -32,7 +49,7 @@ const Purchases = () => {
         <div>
             {
                 userPurchaseData.length > 0 ? (
-                    <div className='flex gap-8 my-12'>
+                    <div className='flex gap-8 my-12 flex-wrap mobile:justify-center'>
                         {
                             userPurchaseData.map(purchase => (
                                 <>

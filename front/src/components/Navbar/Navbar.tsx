@@ -164,7 +164,7 @@ const Navbar: React.FC = () => {
         </label> 
 
         <nav className={styles.navbar}>
-          <Link href="/categories" style={{ '--i': 2 }} {...({} as AnchorProps)}>Categories</Link>
+          <Link href="/categories" style={{ '--i': 2, marginLeft: 0 }} {...({} as AnchorProps)}>Categories</Link>
           <Link href="/assistance" style={{ '--i': 1 }} {...({} as AnchorProps)}>Assistance</Link>
           <Link href="/contact" style={{ '--i': 3 }} {...({} as AnchorProps)}>Contact</Link>
         </nav>

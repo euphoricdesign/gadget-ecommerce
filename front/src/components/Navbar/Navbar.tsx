@@ -1,5 +1,7 @@
 'use client'
 import { CiUser, CiShoppingCart } from "react-icons/ci" 
+import { HiBars3CenterLeft } from "react-icons/hi2" 
+import { IoCloseOutline } from "react-icons/io5" 
 import { useEffect, useRef, useState } from "react" 
 import { useRouter } from 'next/navigation'
 import Link from "next/link" 
@@ -49,7 +51,7 @@ const Navbar: React.FC = () => {
       })
 
       // Mostrar la notificación
-      myToast.showToast();
+      myToast.showToast() 
   
     } else {
       router.push("/cart")
@@ -62,7 +64,7 @@ const Navbar: React.FC = () => {
       localStorage.removeItem('cart')
       setUserSession(null)
     } catch (err) {
-      console.error('Error al eliminar el usuario del localStorage:', err);
+      console.error('Error al eliminar el usuario del localStorage:', err) 
     }
   }
 
@@ -117,30 +119,42 @@ const Navbar: React.FC = () => {
         <header className={styles.header}>
           <div className={styles.menuIcons}>
             <label htmlFor="check" className={styles.icons}>
-              <i className={`${styles.icon} ${styles.menuIcon}`}>&#9776 </i>
-              <i className={`${styles.icon} ${styles.close} ${styles.closeIcon}`}>&#10005 </i>
+              <HiBars3CenterLeft className={`${styles.icon} ${styles.menuIcon} text-2xl`} />
+              <IoCloseOutline  className={`${styles.icon} ${styles.close} ${styles.closeIcon} text-2xl`} />
             </label> 
           </div>
           <input id="check" type="checkbox" className={styles.check} />
           
           <div className={`${styles.right} flex gap-4`}>
-            <CiShoppingCart className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
-            <CiUser className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+            <CiShoppingCart onClick={handleCartNotification} className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+            <CiUser onClick={handleShowModal} className='text-2xl text-zinc-600 cursor-pointer hover:text-black' />
+            
+            {showModal && (
+              <div className="absolute top-120 w-48 bg-white flex gap-4 justify-center left-48 p-5 h-32 rounded shadow-md" ref={modalRef}>
+                <div>
+                  <ul className="flex flex-col gap-3">
+                    <li onClick={handleCloseModal}><Link href={userSession ? "/dashboard" : "/login"}>{userSession ? "Mi cuenta" : "Inicia sesión"}</Link></li>
+                    <li onClick={handleCloseModal}><Link href="">Guardados</Link></li>
+                    {userSession && <li onClick={handleCloseModal}><Link onClick={removeUserFromLocalStorage} href="#">Cerrar sesión</Link></li>}
+                  </ul>
+                </div>
+              </div>
+            )}
+
           </div>
           <Link href="/" className={`${styles.logo} ${styles.left}`}>gadget</Link>
           
           
           <nav className={styles.navbar}>
-            <a href="#" style={{ '--i': 0 }} {...({} as AnchorProps)}>Categories</a>
-            <a href="#" style={{ '--i': 1 }} {...({} as AnchorProps)}>Notebooks</a>
-            <a href="#" style={{ '--i': 2 }} {...({} as AnchorProps)}>Iphone</a>
-            <a href="#" style={{ '--i': 3 }} {...({} as AnchorProps)}>Airpods</a>
+            <Link href="/categories" style={{ '--i': 2 }} {...({} as AnchorProps)}>Categories</Link>
+            <Link href="/assistance" style={{ '--i': 1 }} {...({} as AnchorProps)}>Assistance</Link>
+            <Link href="/contact" style={{ '--i': 3 }} {...({} as AnchorProps)}>Contact</Link>
           </nav>
 
         
         </header>
       ) : (
-      <header className={`${styles.header} px-7`}>
+      <header className={`${styles.header} px-32`}>
         <Link href="/" className={`${styles.logo} ${styles.left}`}>gadget</Link>
 
         <input id="check" type="checkbox" className={styles.check} />
@@ -150,10 +164,9 @@ const Navbar: React.FC = () => {
         </label> 
 
         <nav className={styles.navbar}>
-          <a href="#" style={{ '--i': 0 }} {...({} as AnchorProps)}>Categories</a>
-          <a href="#" style={{ '--i': 1 }} {...({} as AnchorProps)}>Notebooks</a>
-          <a href="#" style={{ '--i': 2 }} {...({} as AnchorProps)}>Iphone</a>
-          <a href="#" style={{ '--i': 3 }} {...({} as AnchorProps)}>Airpods</a>
+          <Link href="/categories" style={{ '--i': 2 }} {...({} as AnchorProps)}>Categories</Link>
+          <Link href="/assistance" style={{ '--i': 1 }} {...({} as AnchorProps)}>Assistance</Link>
+          <Link href="/contact" style={{ '--i': 3 }} {...({} as AnchorProps)}>Contact</Link>
         </nav>
 
         <div className={`${styles.right} flex gap-4 relative`}>

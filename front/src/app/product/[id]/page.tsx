@@ -61,12 +61,12 @@ const ProductDetail = ({ params }: ProductDetailParams) => {
   }, [])
 
   return (
-    <div className='flex flex-row flex-wrap'>
+    <div className='flex flex-row flex-wrap mobile:justify-center desktop:justify-start'>
         {
           product && (
             <>
-              <div className='desktop:flex-1 flex justify-center' >
-              <Image className='w-96' src={product.image} width={384} height={1} layout="responsive" alt={`${product.name}`} />
+              <div className='desktop:flex-1 desktop:flex justify-center' >
+                <Image className='w-96' src={product.image} width={384} height={1} layout="responsive" alt={`${product.name}`} />
               </div>
               <div className='desktop:flex-1 p-10 bg-[#f5f5f5] rounded-lg border-[#f5f5f5] border'>
                 <h2 className='font-bold text-2xl text-[#454545]'>{product.name}</h2>

@@ -31,7 +31,7 @@ const Login: React.FC = () => {
   const [failed, setFailed] = useState<boolean>(false)
 
 
-  const [token, setToken] = useState(localStorage.getItem("userSession") || null)
+  const [userSession, setUserSession] = useState(localStorage.getItem("userSession") || null)
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
   }
 
   useEffect(() => {
-    if (token) router.push("/")
+    if (userSession) router.push("/")
   })
 
   return (

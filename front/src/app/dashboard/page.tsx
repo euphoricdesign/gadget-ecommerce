@@ -67,10 +67,10 @@ const Dashboard = () => {
         {
           userData && (
             <>
-              <h2 className="text-2xl font-bold text-[#454545] mb-10">Hola, <span className="text-sky-800">{userData.name.split(' ')[0]}</span></h2>
+              <h2 className="text-2xl font-bold text-[#454545] mb-10">Hi, <span className="text-sky-800">{userData.name.split(' ')[0]}</span></h2>
               <div className="flex justify-between flex-wrap mobile:gap-4">
                 <div className="bg-[#ffffff] p-10 text-[#454545] flex flex-col gap-6 desktop:w-6/12 mobile:w-full rounded-lg border-[#ffffff] shadow-md border">
-                  <h3 className="text-xl font-semibold">Datos del cliente</h3>
+                  <h3 className="text-xl font-semibold">Client data</h3>
                   <span className="flex justify-between font-semibold">Name: <span className="font-normal">{userData.name}</span></span>
                   <span className="flex justify-between font-semibold">Address: <span className="font-normal">{userData.address}</span></span>
                   <span className="flex justify-between font-semibold">Phone: <span className="font-normal">{userData.phone}</span></span>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                     userPurchaseData && userPurchaseData.length > 0 ? (
                       <>
                         <div className="flex flex-col gap-6">
-                          <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
+                          <h3 className="text-xl font-semibold text-[#454545]">My purchases</h3>
                           {
                             userPurchaseData.slice(0, 2).map(purchase => (
                               <>
@@ -107,12 +107,12 @@ const Dashboard = () => {
                       </>
                     ) : (
                       <>
-                        <h3 className="text-xl font-semibold text-[#454545]">Mis compras</h3>
-                        <span>No ha hecho ninguna compra con esta cuenta</span>
+                        <h3 className="text-xl font-semibold text-[#454545]">My purchases</h3>
+                        <span>You have not made any purchases with this account</span>
                       </>
                     )
                   }
-                  <Link href="/purchases" className="underline text-sm self-end">Ver Mis compras</Link>
+                  <Link href="/purchases" className="underline text-sm self-end">View My Purchases</Link>
                 </div>
               </div>
             </>

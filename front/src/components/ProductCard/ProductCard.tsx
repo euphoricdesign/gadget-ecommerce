@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react" 
+import { useEffect, useState } from "react" 
 import { getProductById } from "@/helpers/getData" 
 import IProduct from "@/types/IProduct" 
 import Link from "next/link" 
@@ -24,9 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     const pathname = usePathname()
 
-
-    const storedUserSession = localStorage.getItem("userSession") 
-    const [userSession, setUserSession] = useState(storedUserSession ? JSON.parse(storedUserSession) : null) 
+    const [userSession, setUserSession] = useState(null) 
   
     const [product, setProduct] = useState<IProduct>()
   
@@ -59,6 +57,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
         router.push("/cart")
       }
     }
+
+    useEffect(() => {
+      const isClient = typeof window !== 'undefined';
+  
+      if (isClient) {
+        const storedUserSession = localStorage.getItem('userSession')
+        setUserSession(storedUserSession ? JSON.parse(storedUserSession) : null)
+      }
+    }, [])
 
 
     return (

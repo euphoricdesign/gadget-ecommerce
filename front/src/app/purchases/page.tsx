@@ -45,7 +45,7 @@ const Purchases = () => {
   },[])
   return (
     <div>
-        <h2 className='text-2xl font-bold text-[#454545] mb-4 mt-10'>Mis compras</h2>
+        <h2 className='text-2xl font-bold text-[#454545] mb-4 mt-10'>My purchases</h2>
         <div>
             {
                 userPurchaseData.length > 0 ? (
@@ -64,8 +64,8 @@ const Purchases = () => {
                     </div>
                 ) : (
                   <div className='flex gap-8 my-12 justify-center'>
-                    <div className="flex flex-col items-center">
-                      <p className="text-lg">Aún no realizaste ninguna compra 💔</p>
+                    <div className="flex flex-col items-center" style={{height: '23rem'}}>
+                      <p className="text-lg">You have not yet made a purchase 💔</p>
                       <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}><Link href="/">Ver productos</Link></button>
                     </div>
                   </div>

@@ -70,7 +70,7 @@ const Cart = () => {
   return (
     <AuthLayout>
       <div>
-        <h2 className="text-2xl font-bold text-[#454545] mb-10">Cesta de Compras</h2>
+        <h2 className="text-2xl font-bold text-[#454545] mb-10">Shopping Cart</h2>
 
         {
           cart && cart.length !== 0 ? (
@@ -99,24 +99,24 @@ const Cart = () => {
 
                 <div className="bg-[#f5f5f5] p-10 text-[#454545] flex flex-col gap-6 desktop:w-45percent mobile:w-full max-h-650 rounded-lg border-[#f5f5f5] border">
                   <p className="flex justify-between font-medium">Subtotal <span>${cart.reduce((acc:number, current:any) => acc + current.price, 0)},00</span></p>
-                  <p className="flex justify-between font-medium">Envio <span>$700,00</span></p>
+                  <p className="flex justify-between font-medium">Shipping <span>$700,00</span></p>
                   <hr />
 
                   <p className="flex justify-between font-bold text-lg">Total <span>${cart.reduce((acc:number, current:any) => acc + current.price, 700)},00</span></p>
                   <hr />
 
 
-                  <p className="text-sm text-slate-600">¿Tiene un cupón de descuento? Ingréselo acá</p>
+                  <p className="text-sm text-slate-600">Do you have a discount coupon? Enter it here</p>
                   <input className="bg-transparent border-b border-b-[#454545] w-60 py-2 placeholder:text-sm" placeholder="Cupón de descuento" type="text" />
-                  <button className={`${styles.button} w-56 border-slate-800 shadow-sm hover:-translate-y-1 transition duration-300 font-medium text-sm p-2 rounded border`}>Activar</button>
-                  <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`} onClick={handleBuy}>Realizar compra</button>
+                  <button className={`${styles.button} w-56 border-slate-800 shadow-sm hover:-translate-y-1 transition duration-300 font-medium text-sm p-2 rounded border`}>Activate</button>
+                  <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`} onClick={handleBuy}>Make purchase</button>
                   {success && (
                   <div className="mt-4 py-3 px-4 bg-[#e8f5e9] border border-[#c8e6c9] rounded text-sm text-[#2e7d32] flex items-center">
                     <svg className="mr-2 text-[#4caf50]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                       <path d="M0 0h24v24H0z" fill="none" />
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                     </svg>
-                    Compra realizada con éxito 
+                    Successful purchase 
                   </div>
                   )}
                 </div>
@@ -124,8 +124,8 @@ const Cart = () => {
             </>
           ) : (
             <div className="flex flex-col items-center" style={{height: '23rem'}}> 
-              <p className="text-lg">No hay productos en tu cesta 💔</p>
-              <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}><Link href="/">Comprá ahora!</Link></button>
+              <p className="text-lg">There are no products in your cart 💔</p>
+              <button className={`${styles.button} flex justify-center items-center gap-4 shadow-sm w-72 border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-4 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}><Link href="/">Shop now!</Link></button>
             </div>
           )
         }

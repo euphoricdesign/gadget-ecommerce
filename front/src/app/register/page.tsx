@@ -42,7 +42,7 @@ const Register = () => {
   })
 
   const [success, setSuccess] = useState<boolean>(false)
-  const [token, setToken] = useState(localStorage.getItem("userSession") || null)
+  const [userSession, setUserSession] = useState(localStorage.getItem("userSession") || null)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target
@@ -126,7 +126,7 @@ const Register = () => {
   }
 
   useEffect(() => {
-    if (token) router.push("/")
+    if (userSession) router.push("/")
   })
 
   return (

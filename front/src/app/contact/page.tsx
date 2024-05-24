@@ -19,7 +19,7 @@ const Contact = () => {
       <textarea className='w-full p-2.5 border border-slate-300 rounded text-base mb-2.5' />
       
 
-      <button className={`${styles.button} flex justify-center items-center gap-4 shadow-md w-full border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-8 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}>Enviar</button>
+      <button className={`${styles.button} flex justify-center items-center gap-4 shadow-md w-full border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-8 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}>Send</button>
 
     </form>
   </div>

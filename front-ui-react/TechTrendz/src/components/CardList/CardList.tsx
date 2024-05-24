@@ -58,7 +58,7 @@ const CardList: React.FC = () => {
                 <ProductCard key={product.id}>
                   <img src={product.image} alt={product.name} />
                   <h3>{product.name}</h3>
-                  <p>Precio: ${product.price}</p>
+                  <p>Price: ${product.price}</p>
                 </ProductCard>
               ))
             ) : (

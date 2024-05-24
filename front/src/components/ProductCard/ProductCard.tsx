@@ -76,7 +76,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <h3 className="desktop:text-lg font-semibold mb-2 mobile:text-sm">{name}</h3>
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-gray-400 text-sm">Precio:</p>
+              <p className="text-gray-400 text-sm">Price:</p>
               <p className="font-semibold desktop:text-base mobile:text-sm">${price}</p>
             </div>
             <span onClick={handleAddToCart} className={`${pathname === '/purchases' ? 'hidden' : ''} bg-[#1e1e1e] w-9 h-9 rounded text-white flex items-center justify-center text-center cursor-pointer desktop:text-base mobile:text-sm`}><CiShoppingCart /></span>

@@ -128,7 +128,7 @@ const Login: React.FC = () => {
         <input className={errors.password ? 'border-2 border-red-600 w-full bg-red-200 p-2.5 rounded text-base mb-2.5' : 'w-full p-2.5 border border-slate-300 rounded text-base mb-2.5'} type="password" value={formData.password} name='password' onChange={handleInputChange} />
         {errors.password && <p className="text-red-600 text-sm mb-4">{errors.password}</p>}
 
-        <button className={`${styles.button} flex justify-center items-center gap-4 shadow-md w-full border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-8 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}>Enviar</button>
+        <button className={`${styles.button} flex justify-center items-center gap-4 shadow-md w-full border-slate-800 bg-[#1A1A1A] text-white text-sm font-medium mt-8 hover:-translate-y-1 transition p-3 duration-300 rounded border-2`}>Send</button>
         {success ? (
             <div className="mt-4 py-3 px-4 bg-[#e8f5e9] border border-[#c8e6c9] rounded text-sm text-[#2e7d32] flex items-center">
               <svg className="mr-2 text-[#4caf50]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">

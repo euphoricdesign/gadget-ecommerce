@@ -1,4 +1,7 @@
 ---
+title: "Gadget"
+description: "Plataforma de ecommerce para la venta de productos electrónicos."
+---
 
 # Gadget
 

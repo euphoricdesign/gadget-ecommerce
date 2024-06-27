@@ -111,7 +111,7 @@ Si deseas contribuir a **Gadget**, por favor sigue los siguientes pasos:
 
 ### Licencia
 
-Este proyecto está bajo la licencia [MIT](notion://www.notion.so/LICENSE).
+Este proyecto no tiene una licencia específica por el momento.
 
 ### Autores
 
